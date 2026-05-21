@@ -22,7 +22,7 @@ React 19, Vite 6, Tailwind v4, motion 12, R3F 9, drei 10.
 Block A — `src/components/FeatureMotion.tsx` (Motion Variants + AnimatePresence).
 Block B — Live-Demo View Transitions API.
 Block C — Live-Demo @scope in `src/index.css`.
-Block D — `src/components/Dialog.tsx` (Cursor Agent + shadcn/ui).
+Block D — `src/components/Dialog.tsx` (Claude Code Agent + shadcn/ui).
 
 ## Deploy
 

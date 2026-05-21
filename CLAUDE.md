@@ -1,6 +1,6 @@
 # Agent rules — compose-and-agent
 
-Use this repo to learn the compose layer (Motion + View Transitions + @scope) and the agent layer (Cursor Agent Mode + shadcn/ui).
+Use this repo to learn the compose layer (Motion + View Transitions + @scope) and the agent layer (Claude Code Agent-Modus + shadcn/ui).
 
 ## Hard constraints
 
@@ -30,7 +30,7 @@ Reference tokens, never hardcode `oklch()` or hex in components.
 
 ## Agent brief structure (Block D)
 
-When using Cursor Agent Mode or Claude Code Agent to write code, every brief must have:
+When using Claude Code Agent-Modus to write code, every brief must have:
 
 - **Context** — what already exists in the repo, concrete (e.g. "FeatureMotion has motion.div with Variants and staggerChildren=0.12")
 - **Goal** — what the finished component must do, concrete

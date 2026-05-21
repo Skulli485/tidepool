@@ -59,7 +59,7 @@ export function Hero() {
             Compose + Agent.
           </h1>
           <p className="text-xl text-ink-muted max-w-2xl">
-            Motion Variants · View Transitions · @scope · Cursor Agent
+            Motion Variants · View Transitions · @scope · Claude Code Agent
           </p>
         </div>
       </div>
