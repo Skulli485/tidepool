@@ -52,18 +52,62 @@ body {
   navigation: auto;
 }
 
+::view-transition-old(root) {
+  animation: vt-fade-out 220ms cubic-bezier(0.4, 0, 0.1);
+}
+
+::view-transition-new(root) {
+  animation: vt-fade-in 220ms cubic-bezier(0, 0 0.2, 1); /*Cubic Bezier: Material-Design Easings*/
+}
+
+@keyframes vt-fade-out {
+  to {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}
+
+@scope(.feature-motion){
+  h3{
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+
+  p{
+    line-height: 1.65;
+    color:oklch(80% 0.02 250)
+  }
+}
+
+/* Scope für Style Isolation auf Sub-Tree ebene. Das was CSS im Build-Time-Hashing macht.*/
+
 /*
   Register the conic-gradient angle as an animatable custom property.
   Without @property the browser cannot interpolate angle values in animations.
 */
 @property --angle {
-  syntax: '<angle>';
+  syntax: "<angle>";
   initial-value: 0deg;
   inherits: false;
 }
 
 @keyframes ring-rotate {
-  to { --angle: 360deg; }
+  to {
+    --angle: 360deg;
+  }
 }
 
 .featured-ring {
@@ -71,18 +115,21 @@ body {
   background:
     linear-gradient(var(--color-card-bg), var(--color-card-bg)) padding-box,
     conic-gradient(
-      from var(--angle),
-      var(--color-brand),
-      color-mix(in oklch, var(--color-brand) 30%, transparent),
-      var(--color-brand)
-    ) border-box;
+        from var(--angle),
+        var(--color-brand),
+        color-mix(in oklch, var(--color-brand) 30%, transparent),
+        var(--color-brand)
+      )
+      border-box;
   border: 2px solid transparent;
   border-radius: 0.75rem;
   animation: ring-rotate 6s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.2s !important;
   }
