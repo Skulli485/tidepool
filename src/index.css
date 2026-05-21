@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+/*
+  Token system: 3 layers (primitive → semantic → component).
+  Change --color-brand once and the whole app shifts.
+*/
+
+@theme {
+  /* Layer 1 — primitive */
+  --color-iris-500: oklch(62% 0.21 280);
+  --color-iris-400: oklch(70% 0.18 280);
+  --color-iris-300: oklch(80% 0.13 280);
+  --color-coal-950: oklch(13% 0.02 250);
+  --color-coal-900: oklch(18% 0.02 250);
+  --color-coal-800: oklch(24% 0.02 250);
+  --color-coal-700: oklch(32% 0.02 250);
+  --color-coal-300: oklch(72% 0.02 250);
+  --color-coal-100: oklch(96% 0.005 250);
+
+  /* Layer 2 — semantic */
+  --color-brand: var(--color-iris-500);
+  --color-bg: var(--color-coal-950);
+  --color-bg-elev: var(--color-coal-900);
+  --color-ink: var(--color-coal-100);
+  --color-ink-muted: var(--color-coal-300);
+  --color-rule: var(--color-coal-800);
+
+  /* Layer 3 — component */
+  --color-card-bg: var(--color-coal-900);
+  --color-card-border: var(--color-coal-800);
+  --color-card-border-featured: var(--color-brand);
+
+  --font-display: "Geist", "Inter", system-ui, sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", monospace;
+}
+
+/* base */
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  min-height: 100vh;
+  margin: 0;
+}
+
+/*
+  View Transitions API opt-in.
+  Single line enables automatic cross-document choreography
+  on same-origin navigation. Chrome 111+, Safari 18+, Firefox 144+.
+*/
+@view-transition {
+  navigation: auto;
+}
+
+/*
+  Register the conic-gradient angle as an animatable custom property.
+  Without @property the browser cannot interpolate angle values in animations.
+*/
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes ring-rotate {
+  to { --angle: 360deg; }
+}
+
+.featured-ring {
+  position: relative;
+  background:
+    linear-gradient(var(--color-card-bg), var(--color-card-bg)) padding-box,
+    conic-gradient(
+      from var(--angle),
+      var(--color-brand),
+      color-mix(in oklch, var(--color-brand) 30%, transparent),
+      var(--color-brand)
+    ) border-box;
+  border: 2px solid transparent;
+  border-radius: 0.75rem;
+  animation: ring-rotate 6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.2s !important;
+  }
+}
