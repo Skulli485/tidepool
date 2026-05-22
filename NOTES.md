@@ -261,8 +261,25 @@ Gestern fragte der Agent nach der Brand "Tidepool" und fand keine Referenz im Co
 ### Was NICHT geändert wurde
 
 - **`Hero.tsx`** — Der TorusKnot liest `--color-brand` dynamisch via `cssVarToHex()`, wird also automatisch Teal. Das 3D-Motif (TorusKnot → Animated Waves) steht noch aus.
-- **`Dialog.tsx`** und **`FeatureMotion.tsx`** — Build-Targets, nicht angerührt (CLAUDE.md-Regel).
+- **`FeatureMotion.tsx`** — Build-Target, nicht angerührt (CLAUDE.md-Regel).
 - **`Header.tsx`** — Zeigt noch "compose-and-agent", kann bei Bedarf auf "Tidepool" geändert werden.
+
+### Button-Styling in Dialog.tsx (Nachbesserung)
+
+Der "Was ist Agentic Engineering?"-Button nutzte `variant="outline"` mit Standard-Neutralgrau. Angepasst auf Tidepool-Farbschema:
+
+- `text-ink` — volle Deckkraft statt geerbtes `ink-muted`
+- `border-brand` — teal-er Rahmen
+- `bg-brand/10` — dezenter Teal-Hintergrund
+- `hover:bg-brand/20` — stärkere Teal-Tönung beim Hover
+
+### Deployment
+
+**GitHub:** Fork erstellt als `Skulli485/tidepool` (Rebase auf Fork-Historie, Konflikt in Dialog.tsx gelöst).
+
+**Vercel:** Production-Deploy — https://tidepool-nine.vercel.app
+
+**here.now:** Published via Skill — https://clear-monsoon-g49v.here.now (API vergibt zufällige Slugs, Custom-Slug "tidepool" nicht via API möglich). Profil: https://here.now/@skulli4485
 
 ### Build-Verifikation
 

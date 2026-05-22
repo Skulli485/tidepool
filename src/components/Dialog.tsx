@@ -40,7 +40,7 @@ export function Dialog(): ReactNode {
 
   return (
     <DialogRoot open={open} onOpenChange={setOpen}>
-      <DialogTrigger render={<Button variant="outline" className="text-ink" />}>
+      <DialogTrigger render={<Button variant="outline" className="text-ink border-brand bg-brand/10 hover:bg-brand/20" />}>
         Was ist Agentic Engineering?
       </DialogTrigger>
 
